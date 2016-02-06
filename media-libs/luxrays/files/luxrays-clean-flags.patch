@@ -1,0 +1,40 @@
+diff -Naur luxrender-luxrays-8577ff287efb/cmake/PlatformSpecific.cmake luxrender_v1.5.1/cmake/PlatformSpecific.cmake
+--- luxrender-luxrays-8577ff287efb/cmake/PlatformSpecific.cmake	2015-10-06 10:56:47.000000000 +0200
++++ luxrender_v1.5.1/cmake/PlatformSpecific.cmake	2016-02-04 11:08:19.035187258 +0100
+@@ -136,22 +136,6 @@
+ 
+ ENDIF(MSVC)
+ 
+-
+-
+-IF(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
+-  # Update if necessary
+-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-long-long -pedantic")
+-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse -msse2 -msse3 -mssse3")
+-  IF(NOT CYGWIN)
+-	  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+-  ENDIF(NOT CYGWIN)
+-
+-  SET(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
+-  SET(CMAKE_CXX_FLAGS_RELEASE "-DNDEBUG -O3 -ftree-vectorize -fvariable-expansion-in-unroller")
+-  
+-ENDIF()
+-
+-
+ # Setting Universal Binary Properties, only for Mac OS X
+ #  generate with xcode/crosscompile, setting: ( darwin - 10.6 - gcc - g++ - MacOSX10.6.sdk - Find from root, then native system )
+ IF(APPLE)
+diff -Naur luxrender-luxrays-8577ff287efb/CMakeLists.txt luxrender_v1.5.1/CMakeLists.txt
+--- luxrender-luxrays-8577ff287efb/CMakeLists.txt	2015-10-06 10:56:47.000000000 +0200
++++ luxrender_v1.5.1/CMakeLists.txt	2016-02-04 11:08:27.022187258 +0100
+@@ -107,10 +107,6 @@
+ 	ADD_DEFINITIONS("-DLUXRAYS_DISABLE_OPENCL")
+ endif()
+ 
+-if(NOT WIN32 AND NOT APPLE)
+-	ADD_DEFINITIONS(-msse2 -mfpmath=sse -ftree-vectorize -funroll-loops -Wall -fPIC -DHAVE_PTHREAD_H)
+-endif()
+-
+ ################################################################################
+ #
+ # LuxRays, SLG and LuxCore libraries

@@ -1,0 +1,11 @@
+diff -Naur luxrender-luxrays-8577ff287efb/include/luxrays/luxrays.h luxrender_v1.5.1/include/luxrays/luxrays.h
+--- luxrender-luxrays-8577ff287efb/include/luxrays/luxrays.h	2015-10-06 10:56:47.000000000 +0200
++++ luxrender_v1.5.1/include/luxrays/luxrays.h	2016-02-04 11:00:31.203905499 +0100
+@@ -35,7 +35,6 @@
+ //------------------------------------------------------------------------------
+ 
+ #if defined(ENABLE_UNICODE_SUPPORT)
+-#include <boost/locale.hpp>
+ #include <boost/filesystem/fstream.hpp>
+ 
+ #define BOOST_IFSTREAM boost::filesystem::ifstream
